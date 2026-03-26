@@ -1,21 +1,9 @@
-use std::fs;
-use windows::core::{HSTRING, PCWSTR};
-use windows::Win32::UI::WindowsAndMessaging::{
-    SystemParametersInfoW, SPIF_SENDWININICHANGE, SPIF_UPDATEINIFILE, SPI_SETDESKWALLPAPER,
-};
-use Window;
-fn main() {
-    let media_path = "media/wallpaper.jpg";
+mod gui;
 
-    match fs::canonicalize(&media_path) {
-        Ok(absolute_path) => {
-            
-        }
-        Err(_) => {
-            eprintln!("No media found.");
-        }
-    }
-    
-    println!("Hello, world!");
-    Window::build();
+use crate::gui::{support, window::WindowUI};
+
+fn main() {
+    support::simple_init("rs-paper", |_, ui| {
+        WindowUI::build(ui);
+    });
 }

@@ -1,14 +1,18 @@
 use imgui::*;
 
-mod window;
+pub struct WindowUI;
 
-pub struct Window;
-
-pub impl Window for imgui::Ui {
-    fn build<F: FnOnce()>() {
-        ui.window("Hello world")
+impl WindowUI {
+    pub fn build(ui: &imgui::Ui) {
+        ui.window("Rs-Paper")
             .size([300.0, 100.0], Condition::FirstUseEver)
-            .build(build_fn);
+            .build(|| {
+                ui.text("RS-PAPER is running!");
+                ui.separator();
+                if ui.button("Click me!") {
+                    println!("Button clicked!");
+                }
+            });
     }
 }
 
