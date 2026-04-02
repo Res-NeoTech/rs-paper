@@ -1,12 +1,8 @@
-use crate::wallpaper::wallpaper::{Wallpaper, WallpaperType};
-
+mod gui;
 mod wallpaper;
-fn main() {
-    let wallpaper: Wallpaper = Wallpaper {
-        name: "Example",
-        w_type: WallpaperType::Image,
-        path: "media/wallpaper.jpg"
-    };
 
-    wallpaper.apply();
+use gui::RsPaperApp;
+
+fn main() -> iced::Result {
+    iced::run(RsPaperApp::update, RsPaperApp::view)
 }
