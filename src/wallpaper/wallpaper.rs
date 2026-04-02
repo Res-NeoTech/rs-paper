@@ -4,6 +4,7 @@ use windows::Win32::UI::WindowsAndMessaging::{
 };
 use windows::core::HSTRING;
 
+#[derive(Copy, Clone)]
 pub enum WallpaperType {
     Image,
     Video,
