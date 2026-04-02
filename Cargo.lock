@@ -1579,6 +1579,7 @@ dependencies = [
  "imgui-glium-renderer",
  "imgui-winit-support",
  "windows",
+ "winit",
 ]
 
 [[package]]

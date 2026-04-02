@@ -1,8 +1,13 @@
 use std::fs;
-use windows::Win32::UI::WindowsAndMessaging::{
-    SPI_SETDESKWALLPAPER, SPIF_SENDWININICHANGE, SPIF_UPDATEINIFILE, SystemParametersInfoW,
+use windows::{
+    core::HSTRING,
+    Win32::UI::WindowsAndMessaging::{
+        SPI_SETDESKWALLPAPER, SPIF_SENDWININICHANGE, SPIF_UPDATEINIFILE, SystemParametersInfoW,
+    },
 };
-use windows::core::{HSTRING};
+
+mod gui;
+
 fn main() {
     let media_path = "media/wallpaper.jpg";
 
@@ -26,4 +31,7 @@ fn main() {
             eprintln!("No media found.");
         }
     }
+
+    // Supprime = pas de gui
+    gui::run();
 }
