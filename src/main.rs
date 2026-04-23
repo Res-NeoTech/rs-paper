@@ -1,16 +1,8 @@
-use std::path::PathBuf;
-
-use crate::wallpaper::wallpaper::{Wallpaper, WallpaperType};
-
+mod gui;
 mod wallpaper;
-mod utils;
 
-fn main() {
-    let wallpaper: Wallpaper = Wallpaper {
-        name: "Example".to_string(),
-        w_type: WallpaperType::Image,
-        path: PathBuf::new().join("media/wallpaper.jpg")
-    };
+use gui::RsPaperApp;
 
-    wallpaper.apply();
+fn main() -> iced::Result {
+    iced::run(RsPaperApp::update, RsPaperApp::view)
 }
