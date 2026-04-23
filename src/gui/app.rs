@@ -48,7 +48,6 @@ impl RsPaperApp {
             Message::ApplyVideoWallpaper => {
                 self.apply_wallpaper(WallpaperType::Video);
             }
-            }
         }
     }
 
