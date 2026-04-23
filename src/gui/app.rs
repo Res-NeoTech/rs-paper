@@ -1,3 +1,5 @@
+use std::path::PathBuf;
+
 use crate::wallpaper::wallpaper::{Wallpaper, WallpaperType};
 use iced::widget::{button, column, text, text_input, Column, Button};
 use iced::Alignment;
@@ -62,9 +64,9 @@ impl RsPaperApp {
         }
 
         let wallpaper = Wallpaper {
-            name: &self.wallpaper_name,
+            name: self.wallpaper_name.clone(),
             w_type,
-            path: &self.wallpaper_path,
+            path: PathBuf::new().join(&self.wallpaper_path),
         };
 
         wallpaper.apply();
