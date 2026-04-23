@@ -1,11 +1,15 @@
+use std::path::PathBuf;
+
 use crate::wallpaper::wallpaper::{Wallpaper, WallpaperType};
 
 mod wallpaper;
+mod utils;
+
 fn main() {
     let wallpaper: Wallpaper = Wallpaper {
-        name: "Example",
+        name: "Example".to_string(),
         w_type: WallpaperType::Image,
-        path: "media/wallpaper.jpg"
+        path: PathBuf::new().join("media/wallpaper.jpg")
     };
 
     wallpaper.apply();

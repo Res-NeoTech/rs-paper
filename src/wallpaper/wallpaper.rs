@@ -1,6 +1,7 @@
 use std::fs;
+use std::path::PathBuf;
 use windows::Win32::UI::WindowsAndMessaging::{
-    SPI_SETDESKWALLPAPER, SPIF_SENDWININICHANGE, SPIF_UPDATEINIFILE, SystemParametersInfoW,
+    SPI_SETDESKWALLPAPER, SPIF_SENDWININICHANGE, SPIF_UPDATEINIFILE, SystemParametersInfoW
 };
 use windows::core::HSTRING;
 
@@ -9,17 +10,17 @@ pub enum WallpaperType {
     Video,
 }
 
-pub struct Wallpaper<'a> {
-    pub name: &'a str,
+pub struct Wallpaper {
+    pub name: String,
     pub w_type: WallpaperType,
-    pub path: &'a str,
+    pub path: PathBuf,
 }
 
-impl<'a> Wallpaper<'a> {
+impl Wallpaper {
     pub fn apply(&self) {
         match self.w_type {
             WallpaperType::Image => Self::apply_image(&self),
-            WallpaperType::Video => println!("Video is not yet supported."),
+            WallpaperType::Video => Self::apply_video(&self),
         }
     }
 
@@ -44,5 +45,9 @@ impl<'a> Wallpaper<'a> {
                 eprintln!("No media found.");
             }
         }
+    }
+
+    fn apply_video(&self) {
+        // Apply video
     }
 }
