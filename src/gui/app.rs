@@ -15,7 +15,6 @@ pub enum Message {
     WallpaperPathChanged(String),
     ApplyImageWallpaper,
     ApplyVideoWallpaper,
-    ApplyEpstein,
 }
 
 impl Default for RsPaperApp {
@@ -48,9 +47,6 @@ impl RsPaperApp {
             }
             Message::ApplyVideoWallpaper => {
                 self.apply_wallpaper(WallpaperType::Video);
-            }
-            Message::ApplyEpstein => {
-                self.status_message = String::from("Epstein didn't kill himself");
             }
         }
     }
@@ -97,7 +93,6 @@ impl RsPaperApp {
             
             text_button("Apply Image Wallpaper", Message::ApplyImageWallpaper),
             text_button("Apply Video Wallpaper", Message::ApplyVideoWallpaper),
-            text_button("Epstein", Message::ApplyEpstein),
             
             text(&self.status_message).size(16),
         ]
