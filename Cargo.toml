@@ -10,6 +10,9 @@ publish = false
 
 [dependencies]
 iced = "0.14.0"
+winit = "0.29" 
+raw-window-handle = "0.6" 
+wry = "0.55"
 windows = { version = "0.52", features = [
     "Win32_UI_WindowsAndMessaging",
     "Win32_Foundation",

@@ -1,5 +1,6 @@
 mod gui;
 mod wallpaper;
+mod utils;
 
 use gui::RsPaperApp;
 
