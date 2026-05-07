@@ -29,19 +29,21 @@ pub fn get_wallpaper_worker_window() -> HWND {
         let mut worker_w = HWND(0);
 
         // Callback to iterate files
-        unsafe extern "system" fn enum_window(window: HWND, lparam: LPARAM) -> BOOL { unsafe {
-            let p_worker_w = lparam.0 as *mut HWND;
-            
-            let shell_dll = FindWindowExW(window, HWND(0), w!("SHELLDLL_DefView"), None);
-            
-            if shell_dll.0 != 0 {
-                let target_worker = FindWindowExW(HWND(0), window, w!("WorkerW"), None);
-                if target_worker.0 != 0 {
-                    *p_worker_w = target_worker;
+        unsafe extern "system" fn enum_window(window: HWND, lparam: LPARAM) -> BOOL {
+            unsafe {
+                let p_worker_w = lparam.0 as *mut HWND;
+
+                let shell_dll = FindWindowExW(window, HWND(0), w!("SHELLDLL_DefView"), None);
+
+                if shell_dll.0 != 0 {
+                    let target_worker = FindWindowExW(HWND(0), window, w!("WorkerW"), None);
+                    if target_worker.0 != 0 {
+                        *p_worker_w = target_worker;
+                    }
                 }
+                true.into()
             }
-            true.into()
-        }}
+        }
 
         // Launch search
         match EnumWindows(Some(enum_window), LPARAM(&mut worker_w as *mut _ as isize)) {
